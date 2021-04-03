@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:cnb_unselectedColor = "#FFFFFF"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/now_playing"
+        android:title="Now Playing"
+        android:icon="@drawable/ic_now_playing"
+        app:cnb_iconColor = "#FFFFFF"
+        app:cnb_textColor = "#FFFFFF"
+        app:cnb_backgroundColor = "#FF2020"
+        />
+    <item
+        android:id="@+id/movies"
+        android:title="Movies"
+        android:icon="@drawable/ic_movies"
+        app:cnb_iconColor = "#FFFFFF"
+        app:cnb_textColor = "#FFFFFF"
+        app:cnb_backgroundColor = "#003B93"
+        />
+    <item
+        android:id="@+id/tv_shows"
+        android:title="TV Shows"
+        android:icon="@drawable/ic_tv_shows"
+        app:cnb_iconColor = "#FFFFFF"
+        app:cnb_textColor = "#FFFFFF"
+        app:cnb_backgroundColor = "#17800C"
+        />
+</menu>
