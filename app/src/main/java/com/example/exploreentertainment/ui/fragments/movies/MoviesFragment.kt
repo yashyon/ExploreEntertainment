@@ -23,6 +23,7 @@ class MoviesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = MoviesFragmentBinding.inflate(inflater)
+        binding.lifecycleOwner = this
         binding.recentMoviesRv.adapter = RecentMoviesAdapter()
         binding.viewModel = viewModel
 

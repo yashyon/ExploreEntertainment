@@ -1,6 +1,5 @@
 package com.example.exploreentertainment.network.models.movies
 
-import com.example.exploreentertainment.network.models.NowPlayingMovie
 import com.squareup.moshi.Json
 
 data class RecentMovies(

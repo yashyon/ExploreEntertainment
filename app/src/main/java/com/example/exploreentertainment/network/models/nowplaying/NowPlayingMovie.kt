@@ -1,4 +1,4 @@
-package com.example.exploreentertainment.network.models
+package com.example.exploreentertainment.network.models.nowplaying
 
 import com.squareup.moshi.Json
 

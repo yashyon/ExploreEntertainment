@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.exploreentertainment.network.apiservices.NowPlayingApi
-import com.example.exploreentertainment.network.models.NowPlayingMovie
 import com.example.exploreentertainment.network.models.movies.RecentMovie
 import kotlinx.coroutines.launch
 

@@ -5,10 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.exploreentertainment.adapters.nowplayingAdapters.NowPlayingMoviesAdapter
-import com.example.exploreentertainment.databinding.NowPlayingMovieItemBinding
 import com.example.exploreentertainment.databinding.RecentMoviesItemBinding
-import com.example.exploreentertainment.network.models.NowPlayingMovie
 import com.example.exploreentertainment.network.models.movies.RecentMovie
 
 class RecentMoviesAdapter  : ListAdapter<RecentMovie, RecentMoviesAdapter.RecentMoviesViewHolder>(

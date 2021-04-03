@@ -7,13 +7,12 @@
     <data>
         <variable
             name="property"
-            type="com.example.exploreentertainment.network.models.NowPlayingMovie" />
+            type="com.example.exploreentertainment.network.models.nowplaying.NowPlayingMovie" />
     </data>
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        >
+        android:padding="5dp" >
         <com.google.android.material.card.MaterialCardView
             android:layout_width="150dp"
             android:layout_height="220dp"
@@ -38,7 +37,9 @@
                         app:imageUrl="@{property.imgUrl}"
                         android:src="@drawable/now_playing_movie" />
                 </FrameLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </com.google.android.material.card.MaterialCardView>
     </FrameLayout>
 

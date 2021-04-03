@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.exploreentertainment.databinding.NowPlayingMovieItemBinding
-import com.example.exploreentertainment.network.models.NowPlayingMovie
+import com.example.exploreentertainment.network.models.nowplaying.NowPlayingMovie
 
 class NowPlayingMoviesAdapter  : ListAdapter<NowPlayingMovie, NowPlayingMoviesAdapter.NowPlayingMoviesViewHolder>(
     DiffCallback

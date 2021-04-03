@@ -1,6 +1,6 @@
 package com.example.exploreentertainment.network.apiservices
 
-import com.example.exploreentertainment.network.models.NPMovies
+import com.example.exploreentertainment.network.models.nowplaying.NPMovies
 import com.example.exploreentertainment.network.models.NPShows
 import com.example.exploreentertainment.network.models.TrendingMovies
 import com.example.exploreentertainment.network.models.TrendingShows

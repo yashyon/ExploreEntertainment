@@ -2,7 +2,7 @@ package com.example.exploreentertainment.ui.fragments.nowplaying
 
 import androidx.lifecycle.*
 import com.example.exploreentertainment.network.apiservices.NowPlayingApi
-import com.example.exploreentertainment.network.models.NowPlayingMovie
+import com.example.exploreentertainment.network.models.nowplaying.NowPlayingMovie
 import com.example.exploreentertainment.network.models.NowPlayingShow
 import com.example.exploreentertainment.network.models.TrendingMovie
 import com.example.exploreentertainment.network.models.TrendingShow
