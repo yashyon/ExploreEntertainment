@@ -17,10 +17,6 @@ class NowPlayingFragment : Fragment() {
     private val viewModel : NowPlayingViewModel by lazy{
         ViewModelProvider(requireActivity()).get(NowPlayingViewModel::class.java)
     }
-    /*by lazy {
-        ViewModelProvider(this).get(NowPlayingViewModel::class.java)
-    }
-*/
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

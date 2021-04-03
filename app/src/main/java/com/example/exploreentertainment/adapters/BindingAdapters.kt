@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.exploreentertainment.adapters.moviesadapters.RecentMoviesAdapter
 import com.example.exploreentertainment.adapters.nowplayingAdapters.NowPlayingMoviesAdapter
 import com.example.exploreentertainment.adapters.nowplayingAdapters.NowPlayingShowsAdapter
 import com.example.exploreentertainment.adapters.trendingadapters.TrendingMoviesAdapter
@@ -39,6 +40,11 @@ fun bindNPShowsRecyclerView(recyclerView: RecyclerView, data : List<NowPlayingSh
     (recyclerView.adapter as? NowPlayingShowsAdapter)?.submitList(data)
 }
 
+@BindingAdapter("listDataRecentMovies")
+fun bindRecentMoviesRecyclerView(recyclerView: RecyclerView, data : List<NowPlayingMovie>?){
+    (recyclerView.adapter as? RecentMoviesAdapter)?.submitList(data)
+}
+
 @BindingAdapter("listDataTrendingShows")
 fun bindTrendingShowsRecyclerView(recyclerView: RecyclerView, data : List<TrendingShow>?){
     (recyclerView.adapter as? TrendingShowsAdapter)?.submitList(data)
@@ -48,6 +54,7 @@ fun bindTrendingShowsRecyclerView(recyclerView: RecyclerView, data : List<Trendi
 fun bindTrendingMoviesRecyclerView(recyclerView: RecyclerView, data : List<TrendingMovie>?){
     (recyclerView.adapter as? TrendingMoviesAdapter)?.submitList(data)
 }
+
 
 
 @BindingAdapter("imageUrl")

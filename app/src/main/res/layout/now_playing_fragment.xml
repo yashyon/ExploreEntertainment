@@ -58,7 +58,6 @@
                         app:spanCount="1"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:listDataTrendingMovies="@{viewModel.trendingMovies}"
-
                         tools:listitem="@layout/trending_movie_item" />
                 </LinearLayout>
 
