@@ -25,6 +25,7 @@ class MoviesFragment : Fragment() {
         val binding = MoviesFragmentBinding.inflate(inflater)
         binding.recentMoviesRv.adapter = RecentMoviesAdapter()
         binding.viewModel = viewModel
+
         return binding.root
     }
 
