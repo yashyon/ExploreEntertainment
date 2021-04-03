@@ -14,6 +14,7 @@ import com.example.exploreentertainment.network.models.NowPlayingMovie
 import com.example.exploreentertainment.network.models.NowPlayingShow
 import com.example.exploreentertainment.network.models.TrendingMovie
 import com.example.exploreentertainment.network.models.TrendingShow
+import com.example.exploreentertainment.network.models.movies.RecentMovie
 
 @BindingAdapter("rating")
 fun bindRating(textView : TextView, rating : Int){
@@ -41,7 +42,7 @@ fun bindNPShowsRecyclerView(recyclerView: RecyclerView, data : List<NowPlayingSh
 }
 
 @BindingAdapter("listDataRecentMovies")
-fun bindRecentMoviesRecyclerView(recyclerView: RecyclerView, data : List<NowPlayingMovie>?){
+fun bindRecentMoviesRecyclerView(recyclerView: RecyclerView, data : List<RecentMovie>?){
     (recyclerView.adapter as? RecentMoviesAdapter)?.submitList(data)
 }
 

@@ -9,14 +9,15 @@ import com.example.exploreentertainment.adapters.nowplayingAdapters.NowPlayingMo
 import com.example.exploreentertainment.databinding.NowPlayingMovieItemBinding
 import com.example.exploreentertainment.databinding.RecentMoviesItemBinding
 import com.example.exploreentertainment.network.models.NowPlayingMovie
+import com.example.exploreentertainment.network.models.movies.RecentMovie
 
-class RecentMoviesAdapter  : ListAdapter<NowPlayingMovie, RecentMoviesAdapter.RecentMoviesViewHolder>(
+class RecentMoviesAdapter  : ListAdapter<RecentMovie, RecentMoviesAdapter.RecentMoviesViewHolder>(
     DiffCallback
 ){
 
     override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): RecentMoviesAdapter.RecentMoviesViewHolder {
-        return RecentMoviesAdapter.RecentMoviesViewHolder(
+                                    viewType: Int): RecentMoviesViewHolder {
+        return RecentMoviesViewHolder(
             RecentMoviesItemBinding.inflate(
                 LayoutInflater.from(parent.context)
             )
@@ -26,24 +27,24 @@ class RecentMoviesAdapter  : ListAdapter<NowPlayingMovie, RecentMoviesAdapter.Re
      * Replaces the contents of a view (invoked by the layout manager)
      */
     override fun onBindViewHolder(holder: RecentMoviesAdapter.RecentMoviesViewHolder, position: Int) {
-        val npmovie = getItem(position)
-        holder.bind(npmovie)
+        val recentMovie = getItem(position)
+        holder.bind(recentMovie)
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<NowPlayingMovie>() {
-        override fun areItemsTheSame(oldItem: NowPlayingMovie, newItem: NowPlayingMovie): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback< RecentMovie >() {
+        override fun areItemsTheSame(oldItem: RecentMovie, newItem: RecentMovie): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: NowPlayingMovie, newItem: NowPlayingMovie): Boolean {
+        override fun areContentsTheSame(oldItem: RecentMovie, newItem: RecentMovie): Boolean {
             return oldItem.imgUrl == newItem.imgUrl
         }
     }
 
     class RecentMoviesViewHolder(private val binding : RecentMoviesItemBinding)
         : RecyclerView.ViewHolder(binding.root){
-        fun bind(npMovies : NowPlayingMovie){
-            binding.property = npMovies
+        fun bind(recentMovie : RecentMovie){
+            binding.property = recentMovie
             binding.executePendingBindings()
         }
     }

@@ -4,6 +4,7 @@ import com.example.exploreentertainment.network.models.NPMovies
 import com.example.exploreentertainment.network.models.NPShows
 import com.example.exploreentertainment.network.models.TrendingMovies
 import com.example.exploreentertainment.network.models.TrendingShows
+import com.example.exploreentertainment.network.models.movies.RecentMovies
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import retrofit2.Retrofit
@@ -26,6 +27,12 @@ interface NowPlayingApiService {
     suspend fun getMovies(
             @Query("api_key") apiKey : String = "2e03601e7e59074d433b222a3db5b809")
             : NPMovies
+
+    @GET("movie/now_playing")
+    suspend fun getRecentMovies(
+        @Query("api_key") apiKey : String = "2e03601e7e59074d433b222a3db5b809")
+            : RecentMovies
+
     @GET("tv/on_the_air")
     suspend fun getShows(
         @Query("api_key") apiKey: String = "2e03601e7e59074d433b222a3db5b809"
