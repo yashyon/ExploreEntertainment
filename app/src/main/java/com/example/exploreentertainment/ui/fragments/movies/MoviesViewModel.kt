@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.exploreentertainment.network.apiservices.NowPlayingApi
 import com.example.exploreentertainment.network.models.movies.RecentMovie
+import com.example.exploreentertainment.network.models.movies.SearchMovie
+import com.example.exploreentertainment.network.repositories.SearchMoviesRepository
 import kotlinx.coroutines.launch
 
 class MoviesViewModel : ViewModel() {
@@ -13,9 +15,32 @@ class MoviesViewModel : ViewModel() {
     val recentMoviesList : LiveData<List<RecentMovie>>
         get() = _recentMoviesList
 
+    private val _searchMovies = MutableLiveData<ArrayList<SearchMovie>>()
+    val searchMovies : LiveData<ArrayList<SearchMovie>>
+        get() = _searchMovies
+
     init{
-        viewModelScope.launch {
+        viewModelScope.launch{
             _recentMoviesList.value = NowPlayingApi.retrofitService.getRecentMovies().recentMovies
         }
     }
+
+    fun fetchSearch(search : String){
+            viewModelScope.launch {
+                _searchMovies.value  = SearchMoviesRepository.searchedMovies(searchText = search)
+            }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

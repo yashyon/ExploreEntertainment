@@ -55,9 +55,8 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
-                        android:visibility="gone"
+                        android:id="@+id/search_movies_rv"
                         tools:listitem="@layout/movie_search_item"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:orientation="vertical"
                         android:padding="10dp"
                         />

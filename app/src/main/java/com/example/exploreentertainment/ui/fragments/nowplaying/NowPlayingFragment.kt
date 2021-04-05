@@ -22,7 +22,7 @@ class NowPlayingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = NowPlayingFragmentBinding.inflate(inflater)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = requireActivity()
         binding.viewModel = viewModel
         binding.recyclerView.adapter = NowPlayingMoviesAdapter()
         binding.recyclerView2.adapter = NowPlayingShowsAdapter()

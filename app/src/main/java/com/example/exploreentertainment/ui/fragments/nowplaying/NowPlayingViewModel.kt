@@ -6,6 +6,7 @@ import com.example.exploreentertainment.network.models.nowplaying.NowPlayingMovi
 import com.example.exploreentertainment.network.models.NowPlayingShow
 import com.example.exploreentertainment.network.models.TrendingMovie
 import com.example.exploreentertainment.network.models.TrendingShow
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class NowPlayingViewModel : ViewModel() {

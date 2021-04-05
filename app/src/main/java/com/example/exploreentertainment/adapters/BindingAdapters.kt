@@ -6,6 +6,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.exploreentertainment.adapters.moviesadapters.RecentMoviesAdapter
+import com.example.exploreentertainment.adapters.moviesadapters.SearchMoviesAdapter
 import com.example.exploreentertainment.adapters.nowplayingAdapters.NowPlayingMoviesAdapter
 import com.example.exploreentertainment.adapters.nowplayingAdapters.NowPlayingShowsAdapter
 import com.example.exploreentertainment.adapters.trendingadapters.TrendingMoviesAdapter
@@ -15,6 +16,7 @@ import com.example.exploreentertainment.network.models.NowPlayingShow
 import com.example.exploreentertainment.network.models.TrendingMovie
 import com.example.exploreentertainment.network.models.TrendingShow
 import com.example.exploreentertainment.network.models.movies.RecentMovie
+import com.example.exploreentertainment.network.models.movies.SearchMovie
 
 @BindingAdapter("rating")
 fun bindRating(textView : TextView, rating : Int){
@@ -29,6 +31,11 @@ fun bindMediaType(textView : TextView, mediaType : String){
 @BindingAdapter("title")
 fun bindTitle(textView : TextView, title : String){
     textView.text = title
+}
+
+@BindingAdapter("name")
+fun bindName(textView : TextView, name : String){
+    textView.text = name
 }
 
 @BindingAdapter("listDataNPMovies")

@@ -5,6 +5,8 @@ import com.example.exploreentertainment.network.models.NPShows
 import com.example.exploreentertainment.network.models.TrendingMovies
 import com.example.exploreentertainment.network.models.TrendingShows
 import com.example.exploreentertainment.network.models.movies.RecentMovies
+import com.example.exploreentertainment.network.models.movies.SearchMovie
+import com.example.exploreentertainment.network.models.movies.SearchMovies
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import retrofit2.Retrofit
@@ -47,6 +49,9 @@ interface NowPlayingApiService {
     suspend fun getTrendingShows(
         @Query("api_key") apiKey: String = "2e03601e7e59074d433b222a3db5b809"
     ): TrendingShows
+
+    @GET("search/movie?api_key=2e03601e7e59074d433b222a3db5b809&query=avengers")
+    fun searchMovies() : SearchMovies
 }
 
 /**
