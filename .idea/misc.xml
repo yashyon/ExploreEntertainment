@@ -8,6 +8,10 @@
         <entry key="app/src/main/res/layout/movies_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/now_playing_fragment.xml" value="0.75" />
         <entry key="app/src/main/res/layout/now_playing_movie_item.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/popular_movie_item.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/layout/recent_movies_item.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/layout/top_rated_movie_item.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/layout/upcoming_movie_item.xml" value="0.19322916666666667" />
       </map>
     </option>
   </component>

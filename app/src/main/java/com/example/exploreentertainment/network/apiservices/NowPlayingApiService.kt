@@ -4,9 +4,7 @@ import com.example.exploreentertainment.network.models.nowplaying.NPMovies
 import com.example.exploreentertainment.network.models.NPShows
 import com.example.exploreentertainment.network.models.TrendingMovies
 import com.example.exploreentertainment.network.models.TrendingShows
-import com.example.exploreentertainment.network.models.movies.RecentMovies
-import com.example.exploreentertainment.network.models.movies.SearchMovie
-import com.example.exploreentertainment.network.models.movies.SearchMovies
+import com.example.exploreentertainment.network.models.movies.*
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import retrofit2.Retrofit
@@ -50,8 +48,20 @@ interface NowPlayingApiService {
         @Query("api_key") apiKey: String = "2e03601e7e59074d433b222a3db5b809"
     ): TrendingShows
 
-    @GET("search/movie?api_key=2e03601e7e59074d433b222a3db5b809&query=avengers")
-    fun searchMovies() : SearchMovies
+    @GET("movie/popular")
+    suspend fun getPopularMovies(
+        @Query("api_key") apiKey : String = "2e03601e7e59074d433b222a3db5b809")
+            : PopularMovies
+
+    @GET("movie/top_rated")
+    suspend fun getTopRatedMovies(
+        @Query("api_key") apiKey : String = "2e03601e7e59074d433b222a3db5b809")
+            : TopRatedMovies
+
+    @GET("movie/upcoming")
+    suspend fun getUpComingMovies(
+        @Query("api_key") apiKey : String = "2e03601e7e59074d433b222a3db5b809")
+            : UpComingMovies
 }
 
 /**

@@ -35,31 +35,44 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#0040FF"
+                    android:id="@+id/parent_layout"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:orientation="vertical">
-
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/search_edit_frame"
+                    >
                     <EditText
                         android:id="@+id/search_text_movie"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:background="#0040FF"
-                        android:hint="Inception"
                         android:inputType="textPersonName"
                         android:paddingVertical="3dp"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:textColor="@color/white"
                         android:textColorHint="@color/white"
-                        android:textSize="17sp" />
-
-                    <androidx.recyclerview.widget.RecyclerView
+                        android:textSize="17sp"
+                        android:importantForAutofill="no" />
+                </FrameLayout>
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        android:id="@+id/search_movies_rv"
-                        tools:listitem="@layout/movie_search_item"
-                        android:orientation="vertical"
-                        android:padding="10dp"
-                        />
+                        android:id="@+id/frame"
+                        android:layout_height="wrap_content">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:id="@+id/search_movies_rv"
+                            tools:listitem="@layout/movie_search_item"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            />
+                    </FrameLayout>
+
                 </LinearLayout>
 
 
@@ -133,6 +146,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        app:listDataPopularMovies="@{viewModel.popularMoviesList}"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/recent_movies_item" />
@@ -171,6 +185,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="horizontal"
+                        app:listDataTopRatedMovies="@{viewModel.topRatedMoviesList}"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/recent_movies_item" />
                 </LinearLayout>
@@ -207,6 +222,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:orientation="horizontal"
+                        app:listDataUpComingMovies="@{viewModel.upComingMoviesList}"
                         android:padding="5dp"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:spanCount="1"
