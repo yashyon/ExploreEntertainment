@@ -13,6 +13,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
+        android:id="@+id/parent"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,46 +33,38 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
+                    android:id="@+id/parent_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#0040FF"
-                    android:id="@+id/parent_layout"
+                    android:clickable="true"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:orientation="vertical">
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/search_edit_frame"
-                    >
-                    <EditText
+
+                    <SearchView
                         android:id="@+id/search_text_movie"
+                        android:hint="Search any Movie! "
+                        android:focusableInTouchMode="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
                         android:background="#0040FF"
+                        android:focusable="true"
+                        android:iconifiedByDefault="false"
+                        android:importantForAutofill="no"
                         android:inputType="textPersonName"
-                        android:paddingVertical="3dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
                         android:textColor="@color/white"
                         android:textColorHint="@color/white"
-                        android:textSize="17sp"
-                        android:importantForAutofill="no" />
-                </FrameLayout>
-                    <FrameLayout
+                        android:textSize="17sp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/search_movies_rv"
                         android:layout_width="match_parent"
-                        android:id="@+id/frame"
-                        android:layout_height="wrap_content">
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="250dp"
-                            android:id="@+id/search_movies_rv"
-                            tools:listitem="@layout/movie_search_item"
-                            android:orientation="vertical"
-                            android:padding="10dp"
-                            />
-                    </FrameLayout>
+                        android:layout_height="250dp"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:padding="10dp"
+                        tools:listitem="@layout/movie_search_item" />
 
                 </LinearLayout>
 
@@ -146,9 +139,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        app:listDataPopularMovies="@{viewModel.popularMoviesList}"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:listDataPopularMovies="@{viewModel.popularMoviesList}"
                         tools:listitem="@layout/recent_movies_item" />
                 </LinearLayout>
 
@@ -185,8 +178,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="horizontal"
-                        app:listDataTopRatedMovies="@{viewModel.topRatedMoviesList}"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:listDataTopRatedMovies="@{viewModel.topRatedMoviesList}"
                         tools:listitem="@layout/recent_movies_item" />
                 </LinearLayout>
 
@@ -222,9 +215,9 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:orientation="horizontal"
-                        app:listDataUpComingMovies="@{viewModel.upComingMoviesList}"
                         android:padding="5dp"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:listDataUpComingMovies="@{viewModel.upComingMoviesList}"
                         app:spanCount="1"
                         tools:listitem="@layout/trending_movie_item" />
                 </LinearLayout>
