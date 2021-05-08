@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Explore Entertainment</string>
+    <string name="movie_overview">Tom the cat and Jerry the mouse get kicked out of their home and relocate to a fancy New York hotel, where a scrappy employee named Kayla will lose her job if she can’t evict Jerry before a high-class wedding at the hotel. Her solution? Hiring Tom to get rid of the pesky mouse.</string>
+    <string name="tom_amp_jerry"><![CDATA[Tom & Jerry]]></string>
 </resources>

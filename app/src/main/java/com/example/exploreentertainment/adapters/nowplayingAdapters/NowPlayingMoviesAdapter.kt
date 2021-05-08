@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.exploreentertainment.databinding.NowPlayingMovieItemBinding
 import com.example.exploreentertainment.network.models.nowplaying.NowPlayingMovie
 
-class NowPlayingMoviesAdapter  : ListAdapter<NowPlayingMovie, NowPlayingMoviesAdapter.NowPlayingMoviesViewHolder>(
+class NowPlayingMoviesAdapter(private val onClickListener: OnClickListener)
+    : ListAdapter<NowPlayingMovie, NowPlayingMoviesAdapter.NowPlayingMoviesViewHolder>(
     DiffCallback
 ){
 
@@ -21,8 +22,11 @@ class NowPlayingMoviesAdapter  : ListAdapter<NowPlayingMovie, NowPlayingMoviesAd
      * Replaces the contents of a view (invoked by the layout manager)
      */
     override fun onBindViewHolder(holder: NowPlayingMoviesViewHolder, position: Int) {
-        val npmovie = getItem(position)
-        holder.bind(npmovie)
+        val npMovie = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(npMovie)
+        }
+        holder.bind(npMovie)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<NowPlayingMovie>() {
@@ -42,4 +46,16 @@ class NowPlayingMoviesAdapter  : ListAdapter<NowPlayingMovie, NowPlayingMoviesAd
             binding.executePendingBindings()
         }
     }
+    class OnClickListener(val clickListener: (nowPlayingMovie: NowPlayingMovie) -> Unit) {
+        fun onClick(nowPlayingMovie: NowPlayingMovie) = clickListener(nowPlayingMovie)
+    }
 }
+
+
+
+
+
+
+
+
+

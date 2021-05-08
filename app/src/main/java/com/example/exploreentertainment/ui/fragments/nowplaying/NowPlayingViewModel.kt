@@ -27,6 +27,10 @@ class NowPlayingViewModel : ViewModel() {
     val trendingMovies : LiveData<List<TrendingMovie>>
         get() = _trendingMovies
 
+    /*For Navigation of a particular on click*/
+    private val _navigateToSelectedProperty = MutableLiveData<NowPlayingMovie>()
+    val navigateToSelectedProperty: LiveData<NowPlayingMovie>
+        get() = _navigateToSelectedProperty
 
     init{
         viewModelScope.launch {
@@ -35,6 +39,10 @@ class NowPlayingViewModel : ViewModel() {
             _trendingMovies.value = NowPlayingApi.retrofitService.getTrendingMovies().trendingMovies
             _trendingShows.value = NowPlayingApi.retrofitService.getTrendingShows().trendingShows
         }
+    }
+
+    fun displayPropertyDetails(nowPlayingMovie: NowPlayingMovie) {
+        _navigateToSelectedProperty.value = nowPlayingMovie
     }
 }
 
