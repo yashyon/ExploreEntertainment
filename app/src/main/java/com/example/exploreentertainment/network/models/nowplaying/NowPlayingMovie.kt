@@ -10,5 +10,7 @@ data class NPMovies(
 )
 data class NowPlayingMovie (
     @Json(name = "poster_path")
-    val imgUrl: String
+    val imgUrl: String,
+    @Json(name = "id")
+    val id : Int
 )

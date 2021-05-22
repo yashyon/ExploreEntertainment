@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.exploreentertainment.network.apiservices.NowPlayingApi
+import com.example.exploreentertainment.network.apiservices.MoviesShowsApi
 import com.example.exploreentertainment.network.models.movies.*
 import com.example.exploreentertainment.network.repositories.SearchMoviesRepository
 import kotlinx.coroutines.launch
@@ -32,10 +32,10 @@ class MoviesViewModel : ViewModel() {
 
     init{
         viewModelScope.launch{
-            _recentMoviesList.value = NowPlayingApi.retrofitService.getRecentMovies().recentMovies
-            _popularMoviesList.value = NowPlayingApi.retrofitService.getPopularMovies().results
-            _topRatedMoviesList.value = NowPlayingApi.retrofitService.getTopRatedMovies().movies
-            _upComingMoviesList.value = NowPlayingApi.retrofitService.getUpComingMovies().movies
+            _recentMoviesList.value = MoviesShowsApi.retrofitService.getRecentMovies().recentMovies
+            _popularMoviesList.value = MoviesShowsApi.retrofitService.getPopularMovies().results
+            _topRatedMoviesList.value = MoviesShowsApi.retrofitService.getTopRatedMovies().movies
+            _upComingMoviesList.value = MoviesShowsApi.retrofitService.getUpComingMovies().movies
         }
     }
 

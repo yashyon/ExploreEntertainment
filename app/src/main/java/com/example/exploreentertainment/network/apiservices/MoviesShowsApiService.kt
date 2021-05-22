@@ -22,17 +22,17 @@ private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .baseUrl(BASE_URL)
     .build()
-interface NowPlayingApiService {
+
+interface MoviesShowsApiService {
     @GET("movie/now_playing")
     suspend fun getMovies(
-            @Query("api_key") apiKey: String = apikey
-    )
-            : NPMovies
+        @Query("api_key") apiKey: String = apikey
+    ): NPMovies
 
     @GET("movie/now_playing")
     suspend fun getRecentMovies(
-        @Query("api_key") apiKey : String = apikey)
-            : RecentMovies
+        @Query("api_key") apiKey: String = apikey
+    ): RecentMovies
 
     @GET("tv/on_the_air")
     suspend fun getShows(
@@ -51,24 +51,32 @@ interface NowPlayingApiService {
 
     @GET("movie/popular")
     suspend fun getPopularMovies(
-        @Query("api_key") apiKey : String = apikey)
-            : PopularMovies
+        @Query("api_key") apiKey: String = apikey
+    ): PopularMovies
 
     @GET("movie/top_rated")
     suspend fun getTopRatedMovies(
-        @Query("api_key") apiKey : String = apikey)
-            : TopRatedMovies
+        @Query("api_key") apiKey: String = apikey
+    ): TopRatedMovies
 
     @GET("movie/upcoming")
     suspend fun getUpComingMovies(
-        @Query("api_key") apiKey : String = apikey)
-            : UpComingMovies
+        @Query("api_key") apiKey: String = apikey
+    ): UpComingMovies
+
+    suspend fun getMovieDetails(
+        @Query("id") id : String,@Query("api_key") apiKey: String = apikey
+    )
+
 }
 
 /**
  * A public Api object that exposes the lazy-initialized Retrofit service
  */
-object NowPlayingApi {
-    val retrofitService : NowPlayingApiService by lazy { retrofit.create(
-        NowPlayingApiService::class.java) }
+object MoviesShowsApi {
+    val retrofitService: MoviesShowsApiService by lazy {
+        retrofit.create(
+            MoviesShowsApiService::class.java
+        )
+    }
 }

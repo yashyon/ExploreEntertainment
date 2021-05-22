@@ -1,7 +1,7 @@
 package com.example.exploreentertainment.ui.fragments.nowplaying
 
 import androidx.lifecycle.*
-import com.example.exploreentertainment.network.apiservices.NowPlayingApi
+import com.example.exploreentertainment.network.apiservices.MoviesShowsApi
 import com.example.exploreentertainment.network.models.nowplaying.NowPlayingMovie
 import com.example.exploreentertainment.network.models.NowPlayingShow
 import com.example.exploreentertainment.network.models.TrendingMovie
@@ -28,22 +28,26 @@ class NowPlayingViewModel : ViewModel() {
         get() = _trendingMovies
 
     /*For Navigation of a particular on click*/
-    private val _navigateToSelectedProperty = MutableLiveData<NowPlayingMovie>()
-    val navigateToSelectedProperty: LiveData<NowPlayingMovie>
+    private val _navigateToSelectedProperty = MutableLiveData<NowPlayingMovie?>()
+    val navigateToSelectedProperty: MutableLiveData<NowPlayingMovie?>
         get() = _navigateToSelectedProperty
 
     init{
         viewModelScope.launch {
-            _nowPlayingMoviesList.value = NowPlayingApi.retrofitService.getMovies().npResults
-            _nowPlayingShowsList.value = NowPlayingApi.retrofitService.getShows().npsResults
-            _trendingMovies.value = NowPlayingApi.retrofitService.getTrendingMovies().trendingMovies
-            _trendingShows.value = NowPlayingApi.retrofitService.getTrendingShows().trendingShows
+            _nowPlayingMoviesList.value = MoviesShowsApi.retrofitService.getMovies().npResults
+            _nowPlayingShowsList.value = MoviesShowsApi.retrofitService.getShows().npsResults
+            _trendingMovies.value = MoviesShowsApi.retrofitService.getTrendingMovies().trendingMovies
+            _trendingShows.value = MoviesShowsApi.retrofitService.getTrendingShows().trendingShows
         }
     }
 
     fun displayPropertyDetails(nowPlayingMovie: NowPlayingMovie) {
         _navigateToSelectedProperty.value = nowPlayingMovie
     }
+    fun displayNPMoviePropertyDetailsComplete(){
+        _navigateToSelectedProperty.value = null
+    }
+
 }
 
 //.retrofitService.getProperties().npResults
