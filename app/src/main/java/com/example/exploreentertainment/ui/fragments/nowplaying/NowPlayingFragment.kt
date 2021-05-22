@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.example.exploreentertainment.adapters.nowplayingAdapters.NowPlayingMoviesAdapter
 import com.example.exploreentertainment.adapters.nowplayingAdapters.NowPlayingShowsAdapter
@@ -36,6 +37,8 @@ class NowPlayingFragment : Fragment() {
             if(null != it){
                 val npMovieIntent = Intent(requireContext(), MovieDetail::class.java)
                 val movieId = it.id
+                Toast.makeText(requireContext(),"movie id in fragment $movieId",Toast.LENGTH_SHORT).show()
+                npMovieIntent.putExtra(MovieDetail.movie_id,movieId);
                 startActivity(npMovieIntent)
                 viewModel.displayNPMoviePropertyDetailsComplete()
             }
