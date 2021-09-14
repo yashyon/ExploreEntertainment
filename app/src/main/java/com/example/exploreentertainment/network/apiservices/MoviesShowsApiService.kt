@@ -64,9 +64,10 @@ interface MoviesShowsApiService {
         @Query("api_key") apiKey: String = apikey
     ): UpComingMovies
 
+    @GET("movie/")
     suspend fun getMovieDetails(
-        @Query("id") id : String,@Query("api_key") apiKey: String = apikey
-    )
+        @Query("id") id : String = "0",@Query("api_key") apiKey: String = apikey
+    ) : MovieDetails
 
 }
 
