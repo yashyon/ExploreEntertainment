@@ -11,9 +11,9 @@ class MovieDetail : AppCompatActivity() {
     companion object{
         const val movie_id : String = ""
     }
-    private val viewModel : MovieDetailViewModel by lazy{
-        ViewModelProvider(this).get(MovieDetailViewModel::class.java)
-    }
+//    private val viewModel : MovieDetailViewModel by lazy{
+//        ViewModelProvider(this).get(MovieDetailViewModel::class.java)
+//    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
