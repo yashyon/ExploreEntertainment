@@ -38,9 +38,9 @@ fun bindTitle(textView: TextView, title: String) {
     textView.text = title
 }
 
-@BindingAdapter("name")
-fun bindName(textView: TextView, name: String) {
-    textView.text = name
+@BindingAdapter("date")
+fun bindDate(textView: TextView, date: String) {
+    textView.text = date
 }
 
 @BindingAdapter("listDataNPMovies")

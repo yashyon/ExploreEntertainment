@@ -10,6 +10,7 @@ import com.squareup.moshi.Moshi
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 private const val BASE_URL = "https://api.themoviedb.org/3/"
@@ -63,11 +64,6 @@ interface MoviesShowsApiService {
     suspend fun getUpComingMovies(
         @Query("api_key") apiKey: String = apikey
     ): UpComingMovies
-
-    @GET("movie/")
-    suspend fun getMovieDetails(
-        @Query("id") id : String = "0",@Query("api_key") apiKey: String = apikey
-    ) : MovieDetails
 
 }
 

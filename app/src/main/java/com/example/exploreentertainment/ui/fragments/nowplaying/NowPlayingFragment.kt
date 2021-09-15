@@ -28,7 +28,6 @@ class NowPlayingFragment : Fragment() {
         val binding = NowPlayingFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = requireActivity()
         binding.viewModel = viewModel
-//        binding.recyclerView.adapter = NowPlayingMoviesAdapter(requireActivity())
         binding.nowPlayingMoviesRecyclerView.adapter = NowPlayingMoviesAdapter(NowPlayingMoviesAdapter.OnClickListener{
             viewModel.displayPropertyDetails(it)
         })
