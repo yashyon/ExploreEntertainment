@@ -4,9 +4,8 @@ import androidx.lifecycle.*
 import com.example.exploreentertainment.network.apiservices.MoviesShowsApi
 import com.example.exploreentertainment.network.models.nowplaying.NowPlayingMovie
 import com.example.exploreentertainment.network.models.NowPlayingShow
-import com.example.exploreentertainment.network.models.TrendingMovie
+import com.example.exploreentertainment.network.models.trending.TrendingMovie
 import com.example.exploreentertainment.network.models.TrendingShow
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class NowPlayingViewModel : ViewModel() {
@@ -28,9 +27,20 @@ class NowPlayingViewModel : ViewModel() {
         get() = _trendingMovies
 
     /*For Navigation of a particular on click*/
-    private val _navigateToSelectedProperty = MutableLiveData<NowPlayingMovie?>()
-    val navigateToSelectedProperty: MutableLiveData<NowPlayingMovie?>
-        get() = _navigateToSelectedProperty
+    private val _navigateToSelectedNPProperty = MutableLiveData<NowPlayingMovie?>()
+    val navigateToSelectedNPProperty: MutableLiveData<NowPlayingMovie?>
+        get() = _navigateToSelectedNPProperty
+
+    private val _navigateToSelectedTProperty = MutableLiveData<TrendingMovie?>()
+    val navigateToSelectedTProperty: MutableLiveData<TrendingMovie?>
+        get() = _navigateToSelectedTProperty
+
+    private val _navigateToSelectedNSProperty = MutableLiveData<NowPlayingShow?>()
+    val navigateToSelectedNSProperty: MutableLiveData<NowPlayingShow?>
+        get() = _navigateToSelectedNSProperty
+    private val _navigateToSelectedTSProperty = MutableLiveData<TrendingShow?>()
+    val navigateToSelectedTSProperty: MutableLiveData<TrendingShow?>
+        get() = _navigateToSelectedTSProperty
 
     init{
         viewModelScope.launch {
@@ -41,13 +51,30 @@ class NowPlayingViewModel : ViewModel() {
         }
     }
 
-    fun displayPropertyDetails(nowPlayingMovie: NowPlayingMovie) {
-        _navigateToSelectedProperty.value = nowPlayingMovie
+    fun displayNPMoviePropertyDetails(nowPlayingMovie: NowPlayingMovie) {
+        _navigateToSelectedNPProperty.value = nowPlayingMovie
     }
     fun displayNPMoviePropertyDetailsComplete(){
-        _navigateToSelectedProperty.value = null
+        _navigateToSelectedNPProperty.value = null
     }
-
+    fun displayTrendingMoviePropertyDetails(trendingMovie: TrendingMovie) {
+        _navigateToSelectedTProperty.value = trendingMovie
+    }
+    fun displayTrendingMoviePropertyDetailsComplete(){
+        _navigateToSelectedTProperty.value = null
+    }
+    fun displayNPShowPropertyDetails(nowPlayingShow: NowPlayingShow) {
+        _navigateToSelectedNSProperty.value = nowPlayingShow
+    }
+    fun displayNPShowPropertyDetailsComplete(){
+        _navigateToSelectedNSProperty.value = null
+    }
+    fun displayTrendingShowPropertyDetails(trendingShow: TrendingShow) {
+        _navigateToSelectedTSProperty.value = trendingShow
+    }
+    fun displayTrendingShowPropertyDetailsComplete(){
+        _navigateToSelectedTSProperty.value = null
+    }
 }
 
 //.retrofitService.getProperties().npResults

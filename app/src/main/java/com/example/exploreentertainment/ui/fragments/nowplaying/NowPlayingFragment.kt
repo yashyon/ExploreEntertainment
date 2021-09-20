@@ -15,12 +15,14 @@ import com.example.exploreentertainment.adapters.trendingadapters.TrendingMovies
 import com.example.exploreentertainment.adapters.trendingadapters.TrendingShowsAdapter
 import com.example.exploreentertainment.databinding.NowPlayingFragmentBinding
 import com.example.exploreentertainment.ui.activities.moviedetails.MovieDetail
+import com.example.exploreentertainment.ui.activities.showdetails.ShowDetail
 
 class NowPlayingFragment : Fragment() {
 
-    private val viewModel : NowPlayingViewModel by lazy{
+    private val viewModel: NowPlayingViewModel by lazy {
         ViewModelProvider(requireActivity()).get(NowPlayingViewModel::class.java)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,23 +30,61 @@ class NowPlayingFragment : Fragment() {
         val binding = NowPlayingFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = requireActivity()
         binding.viewModel = viewModel
-        binding.nowPlayingMoviesRecyclerView.adapter = NowPlayingMoviesAdapter(NowPlayingMoviesAdapter.OnClickListener{
-            viewModel.displayPropertyDetails(it)
-        })
-
-        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer{
-            if(null != it){
+        /*Now Playing Movies Recycler View Adapter*/
+        binding.nowPlayingMoviesRecyclerView.adapter =
+            NowPlayingMoviesAdapter(NowPlayingMoviesAdapter.OnClickListener {
+                viewModel.displayNPMoviePropertyDetails(it)
+            })
+        viewModel.navigateToSelectedNPProperty.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
                 val npMovieIntent = Intent(requireContext(), MovieDetail::class.java)
                 val movieId = it.id
-                Toast.makeText(requireContext(),"movie id in fragment $movieId",Toast.LENGTH_SHORT).show()
-                npMovieIntent.putExtra(MovieDetail.movie_id,movieId);
+                npMovieIntent.putExtra(MovieDetail.movie_id, movieId);
                 startActivity(npMovieIntent)
                 viewModel.displayNPMoviePropertyDetailsComplete()
             }
         })
-        binding.nowPlayingShowsRecyclerView.adapter = NowPlayingShowsAdapter()
-        binding.trendingMoviesRv.adapter = TrendingMoviesAdapter()
-        binding.trendingShowsRv.adapter = TrendingShowsAdapter()
+        /*Trending Movies Recycler View Adapter*/
+        binding.trendingMoviesRv.adapter =
+            TrendingMoviesAdapter(TrendingMoviesAdapter.OnClickListener {
+                viewModel.displayTrendingMoviePropertyDetails(it)
+            })
+        viewModel.navigateToSelectedTProperty.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                val tMovieIntent = Intent(requireContext(), MovieDetail::class.java)
+                val movieId = it.id
+                tMovieIntent.putExtra(MovieDetail.movie_id, movieId);
+                startActivity(tMovieIntent)
+                viewModel.displayTrendingMoviePropertyDetailsComplete()
+            }
+        })
+        /*NowPlaying Shows Recycler View Adapter*/
+        binding.nowPlayingShowsRecyclerView.adapter =
+            NowPlayingShowsAdapter(NowPlayingShowsAdapter.OnClickListener {
+                viewModel.displayNPShowPropertyDetails(it)
+            })
+        viewModel.navigateToSelectedNSProperty.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                val showIntent = Intent(requireContext(), ShowDetail::class.java)
+                val showId = it.id
+                showIntent.putExtra(ShowDetail.show_id,showId);
+                startActivity(showIntent)
+                viewModel.displayNPShowPropertyDetailsComplete()
+            }
+        })
+        /*Trending Shows Recycler View Adapter*/
+        binding.trendingShowsRv.adapter = TrendingShowsAdapter(TrendingShowsAdapter.OnClickListener{
+            viewModel.displayTrendingShowPropertyDetails(it)
+        })
+        viewModel.navigateToSelectedTSProperty.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                val showIntent = Intent(requireContext(), ShowDetail::class.java)
+                val showId = it.id
+                showIntent.putExtra(ShowDetail.show_id,showId);
+                startActivity(showIntent)
+                viewModel.displayTrendingShowPropertyDetailsComplete()
+            }
+        })
         return binding.root
     }
 

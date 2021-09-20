@@ -13,9 +13,8 @@ import com.example.exploreentertainment.adapters.nowplayingAdapters.NowPlayingMo
 import com.example.exploreentertainment.adapters.nowplayingAdapters.NowPlayingShowsAdapter
 import com.example.exploreentertainment.adapters.trendingadapters.TrendingMoviesAdapter
 import com.example.exploreentertainment.adapters.trendingadapters.TrendingShowsAdapter
-import com.example.exploreentertainment.databinding.TopRatedMovieItemBinding
 import com.example.exploreentertainment.network.models.NowPlayingShow
-import com.example.exploreentertainment.network.models.TrendingMovie
+import com.example.exploreentertainment.network.models.trending.TrendingMovie
 import com.example.exploreentertainment.network.models.TrendingShow
 import com.example.exploreentertainment.network.models.movies.PopularMovie
 import com.example.exploreentertainment.network.models.movies.RecentMovie

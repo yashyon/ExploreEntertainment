@@ -6,21 +6,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.exploreentertainment.databinding.TrendingMovieItemBinding
-import com.example.exploreentertainment.network.models.TrendingMovie
+import com.example.exploreentertainment.network.models.trending.TrendingMovie
 
-class TrendingMoviesAdapter :
+class TrendingMoviesAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<TrendingMovie, TrendingMoviesAdapter.TrendingMoviesViewHolder>(
         DiffCallback
     ) {
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup, viewType: Int
-    ): TrendingMoviesViewHolder {
-
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int ): TrendingMoviesViewHolder {
 
         return TrendingMoviesViewHolder(
-            TrendingMovieItemBinding.inflate(
-                LayoutInflater.from(parent.context)
+            TrendingMovieItemBinding.inflate( LayoutInflater.from(parent.context)
             )
         )
     }
@@ -30,6 +26,9 @@ class TrendingMoviesAdapter :
      */
     override fun onBindViewHolder(holder: TrendingMoviesViewHolder, position: Int) {
         val tMovie = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(tMovie)
+        }
         holder.bind(tMovie)
     }
 
@@ -49,5 +48,8 @@ class TrendingMoviesAdapter :
             binding.property = tMovies
             binding.executePendingBindings()
         }
+    }
+    class OnClickListener(val clickListener: (trendingMovie: TrendingMovie) -> Unit) {
+        fun onClick(trendingMovie: TrendingMovie) = clickListener(trendingMovie)
     }
 }

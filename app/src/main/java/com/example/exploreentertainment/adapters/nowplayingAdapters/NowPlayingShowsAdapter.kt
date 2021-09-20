@@ -7,13 +7,17 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.exploreentertainment.databinding.NowPlayingShowItemBinding
 import com.example.exploreentertainment.network.models.NowPlayingShow
+import com.example.exploreentertainment.network.models.nowplaying.NowPlayingMovie
 
-class NowPlayingShowsAdapter  : ListAdapter<NowPlayingShow, NowPlayingShowsAdapter.NowPlayingShowsViewHolder>(
-    DiffCallback
-){
+class NowPlayingShowsAdapter(private val onClickListener: OnClickListener) :
+    ListAdapter<NowPlayingShow, NowPlayingShowsAdapter.NowPlayingShowsViewHolder>(
+        DiffCallback
+    ) {
 
-    override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): NowPlayingShowsViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): NowPlayingShowsViewHolder {
         return NowPlayingShowsViewHolder(
             NowPlayingShowItemBinding.inflate(
                 LayoutInflater.from(parent.context)
@@ -25,8 +29,11 @@ class NowPlayingShowsAdapter  : ListAdapter<NowPlayingShow, NowPlayingShowsAdapt
      * Replaces the contents of a view (invoked by the layout manager)
      */
     override fun onBindViewHolder(holder: NowPlayingShowsViewHolder, position: Int) {
-        val npmovie = getItem(position)
-        holder.bind(npmovie)
+        val npShow = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(npShow)
+        }
+        holder.bind(npShow)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<NowPlayingShow>() {
@@ -39,11 +46,15 @@ class NowPlayingShowsAdapter  : ListAdapter<NowPlayingShow, NowPlayingShowsAdapt
         }
     }
 
-    class NowPlayingShowsViewHolder(private val binding : NowPlayingShowItemBinding)
-        : RecyclerView.ViewHolder(binding.root){
-        fun bind(npMovies : NowPlayingShow){
+    class NowPlayingShowsViewHolder(private val binding: NowPlayingShowItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(npMovies: NowPlayingShow) {
             binding.property = npMovies
             binding.executePendingBindings()
         }
+    }
+
+    class OnClickListener(val clickListener: (nowPlayingShow: NowPlayingShow) -> Unit) {
+        fun onClick(nowPlayingShow: NowPlayingShow) = clickListener(nowPlayingShow)
     }
 }

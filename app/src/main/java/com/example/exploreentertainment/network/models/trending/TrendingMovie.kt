@@ -1,4 +1,4 @@
-package com.example.exploreentertainment.network.models
+package com.example.exploreentertainment.network.models.trending
 
 import com.squareup.moshi.Json
 
@@ -11,5 +11,7 @@ data class TrendingMovie(
     @Json(name = "backdrop_path")
     val imgUrl : String,
     @Json(name = "original_title")
-    val title : String
+    val title : String,
+    @Json(name = "id")
+    val id : Int
 )

@@ -7,7 +7,7 @@
     <data>
         <variable
             name="property"
-            type="com.example.exploreentertainment.network.models.TrendingMovie" />
+            type="com.example.exploreentertainment.network.models.trending.TrendingMovie" />
     </data>
 
     <FrameLayout

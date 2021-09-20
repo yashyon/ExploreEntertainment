@@ -11,5 +11,7 @@ data class TrendingShow(
     @Json(name = "backdrop_path")
     val imgUrl : String,
     @Json(name = "original_name")
-    val title : String
+    val title : String,
+    @Json(name = "id")
+    val id : Int
 )

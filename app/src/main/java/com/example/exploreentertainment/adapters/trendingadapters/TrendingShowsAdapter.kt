@@ -7,16 +7,17 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.exploreentertainment.databinding.TrendingShowItemBinding
 import com.example.exploreentertainment.network.models.TrendingShow
+import com.example.exploreentertainment.network.models.trending.TrendingMovie
 
-class TrendingShowsAdapter : ListAdapter<TrendingShow, TrendingShowsAdapter.TrendingShowsViewHolder>(
+class TrendingShowsAdapter(private val onClickListener: OnClickListener)  : ListAdapter<TrendingShow, TrendingShowsAdapter.TrendingShowsViewHolder>(
 DiffCallback
 ) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): TrendingShowsAdapter.TrendingShowsViewHolder {
-        return TrendingShowsAdapter.TrendingShowsViewHolder(
+    ): TrendingShowsViewHolder {
+        return TrendingShowsViewHolder(
             TrendingShowItemBinding.inflate(
                 LayoutInflater.from(parent.context)
             )
@@ -26,9 +27,12 @@ DiffCallback
     /**
      * Replaces the contents of a view (invoked by the layout manager)
      */
-    override fun onBindViewHolder(holder: TrendingShowsAdapter.TrendingShowsViewHolder, position: Int) {
-        val tMovie = getItem(position)
-        holder.bind(tMovie)
+    override fun onBindViewHolder(holder: TrendingShowsViewHolder, position: Int) {
+        val tShow = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(tShow)
+        }
+        holder.bind(tShow)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<TrendingShow>() {
@@ -47,5 +51,8 @@ DiffCallback
             binding.property = tShow
             binding.executePendingBindings()
         }
+    }
+    class OnClickListener(val clickListener: (trendingShow: TrendingShow) -> Unit) {
+        fun onClick(trendingShow: TrendingShow) = clickListener(trendingShow)
     }
 }
