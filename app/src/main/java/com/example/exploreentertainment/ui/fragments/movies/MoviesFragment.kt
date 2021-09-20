@@ -1,5 +1,6 @@
 package com.example.exploreentertainment.ui.fragments.movies
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
@@ -53,7 +54,7 @@ class MoviesFragment : Fragment(){
             moviesAdapter.updateList(it)
         })
 
-        binding.searchTextMovie.setOnFocusChangeListener { v, hasFocus ->
+        binding.searchTextMovie.setOnFocusChangeListener { _, hasFocus ->
             if(hasFocus){
                 binding.searchMoviesRv.visibility = View.GONE
             }
@@ -101,7 +102,8 @@ class MoviesFragment : Fragment(){
         }
     }
 
-    private fun setupUI(view: View,binding: MoviesFragmentBinding) {
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setupUI(view: View, binding: MoviesFragmentBinding) {
         val v = binding.searchMoviesRv.id
         if (view !is  SearchView) {
             view.setOnTouchListener { v, _ ->
