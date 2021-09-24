@@ -1,7 +1,6 @@
 package com.example.exploreentertainment.network.models.movies
 
 import com.google.gson.annotations.SerializedName
-import com.squareup.moshi.Json
 
 data class SearchMovies(
     @SerializedName("results")

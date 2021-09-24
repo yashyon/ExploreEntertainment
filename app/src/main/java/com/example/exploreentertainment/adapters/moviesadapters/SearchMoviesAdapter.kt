@@ -29,8 +29,8 @@ class SearchMoviesAdapter  : RecyclerView.Adapter<SearchMoviesAdapter.SearchMovi
 
     class SearchMoviesViewHolder(private val binding : MovieSearchItemBinding)
         : RecyclerView.ViewHolder(binding.root){
-        fun bind(recentMovie : SearchMovie){
-            binding.text.text = recentMovie.name
+        fun bind(movie : SearchMovie){
+            binding.text.text = movie.name
             binding.executePendingBindings()
         }
     }

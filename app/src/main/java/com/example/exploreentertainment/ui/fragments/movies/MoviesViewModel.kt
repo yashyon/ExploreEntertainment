@@ -11,27 +11,27 @@ import kotlinx.coroutines.launch
 
 class MoviesViewModel : ViewModel() {
     private val _recentMoviesList = MutableLiveData<List<RecentMovie>>()
-    val recentMoviesList : LiveData<List<RecentMovie>>
+    val recentMoviesList: LiveData<List<RecentMovie>>
         get() = _recentMoviesList
 
     private val _searchMovies = MutableLiveData<ArrayList<SearchMovie>>()
-    val searchMovies : LiveData<ArrayList<SearchMovie>>
+    val searchMovies: LiveData<ArrayList<SearchMovie>>
         get() = _searchMovies
 
     private val _popularMoviesList = MutableLiveData<List<PopularMovie>>()
-    val popularMoviesList : LiveData<List<PopularMovie>>
+    val popularMoviesList: LiveData<List<PopularMovie>>
         get() = _popularMoviesList
 
     private val _topRatedMoviesList = MutableLiveData<List<TopRatedMovie>>()
-    val topRatedMoviesList : LiveData<List<TopRatedMovie>>
+    val topRatedMoviesList: LiveData<List<TopRatedMovie>>
         get() = _topRatedMoviesList
 
     private val _upComingMoviesList = MutableLiveData<List<UpComingMovie>>()
-    val upComingMoviesList : LiveData<List<UpComingMovie>>
+    val upComingMoviesList: LiveData<List<UpComingMovie>>
         get() = _upComingMoviesList
 
-    init{
-        viewModelScope.launch{
+    init {
+        viewModelScope.launch {
             _recentMoviesList.value = MoviesShowsApi.retrofitService.getRecentMovies().recentMovies
             _popularMoviesList.value = MoviesShowsApi.retrofitService.getPopularMovies().results
             _topRatedMoviesList.value = MoviesShowsApi.retrofitService.getTopRatedMovies().movies
@@ -39,10 +39,10 @@ class MoviesViewModel : ViewModel() {
         }
     }
 
-    fun fetchSearch(search : String){
-            viewModelScope.launch {
-                _searchMovies.value  = SearchMoviesRepository.searchedMovies(searchText = search)
-            }
+    fun fetchSearch(search: String) {
+        viewModelScope.launch {
+            _searchMovies.value = SearchMoviesRepository.searchedMovies(searchText = search)
+        }
     }
 }
 
