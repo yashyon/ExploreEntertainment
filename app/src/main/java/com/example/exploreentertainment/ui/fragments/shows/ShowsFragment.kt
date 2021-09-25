@@ -2,6 +2,7 @@ package com.example.exploreentertainment.ui.fragments.shows
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,12 +12,15 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.exploreentertainment.R
 import com.example.exploreentertainment.adapters.moviesadapters.SearchMoviesAdapter
+import com.example.exploreentertainment.adapters.nowplayingAdapters.NowPlayingShowsAdapter
 import com.example.exploreentertainment.adapters.showsadapters.SearchShowsAdapter
 import com.example.exploreentertainment.databinding.MoviesFragmentBinding
 import com.example.exploreentertainment.databinding.ShowsFragmentBinding
+import com.example.exploreentertainment.ui.activities.showdetails.ShowDetail
 import com.example.exploreentertainment.ui.fragments.movies.MoviesViewModel
 
 class ShowsFragment : Fragment() {
@@ -32,6 +36,20 @@ class ShowsFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(ShowsViewModel::class.java)
         binding.lifecycleOwner = requireActivity()
         binding.viewModel = viewModel
+        /*Recent Shows RecyclerView Code*/
+        binding.recentShowsRv.adapter = NowPlayingShowsAdapter(NowPlayingShowsAdapter.OnClickListener{
+            viewModel.displayNPShowPropertyDetails(it)
+        })
+        viewModel.navigateToSelectedNSProperty.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                val showIntent = Intent(requireContext(), ShowDetail::class.java)
+                val showId = it.id
+                showIntent.putExtra(ShowDetail.show_id,showId);
+                startActivity(showIntent)
+                viewModel.displayNPShowPropertyDetailsComplete()
+            }
+        })
+        /***********************************/
         binding.searchShowsRv.layoutManager = LinearLayoutManager(
             context,
             LinearLayoutManager.VERTICAL,

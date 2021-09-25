@@ -10,13 +10,16 @@ import com.example.exploreentertainment.network.repositories.SearchMoviesReposit
 import kotlinx.coroutines.launch
 
 class MoviesViewModel : ViewModel() {
-    private val _recentMoviesList = MutableLiveData<List<RecentMovie>>()
-    val recentMoviesList: LiveData<List<RecentMovie>>
-        get() = _recentMoviesList
 
+    /*Search Bar Results*/
     private val _searchMovies = MutableLiveData<ArrayList<SearchMovie>>()
     val searchMovies: LiveData<ArrayList<SearchMovie>>
         get() = _searchMovies
+
+    /*Lists of recycler views in fragment*/
+    private val _recentMoviesList = MutableLiveData<List<RecentMovie>>()
+    val recentMoviesList: LiveData<List<RecentMovie>>
+        get() = _recentMoviesList
 
     private val _popularMoviesList = MutableLiveData<List<PopularMovie>>()
     val popularMoviesList: LiveData<List<PopularMovie>>
