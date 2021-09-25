@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.exploreentertainment.R
 import com.example.exploreentertainment.adapters.moviesadapters.SearchMoviesAdapter
 import com.example.exploreentertainment.adapters.nowplayingAdapters.NowPlayingShowsAdapter
+import com.example.exploreentertainment.adapters.showsadapters.PopularShowsAdapter
 import com.example.exploreentertainment.adapters.showsadapters.SearchShowsAdapter
 import com.example.exploreentertainment.databinding.MoviesFragmentBinding
 import com.example.exploreentertainment.databinding.ShowsFragmentBinding
@@ -50,6 +51,21 @@ class ShowsFragment : Fragment() {
             }
         })
         /***********************************/
+        /*Popular Shows*/
+        binding.popularShowsRv.adapter = PopularShowsAdapter(PopularShowsAdapter.OnClickListener{
+            viewModel.displayPopularShowsPropertyDetails(it)
+        })
+        viewModel.navigateToSelectedPSProperty.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                val showIntent = Intent(requireContext(), ShowDetail::class.java)
+                val showId = it.id
+                showIntent.putExtra(ShowDetail.show_id,showId);
+                startActivity(showIntent)
+                viewModel.displayPopularShowsPropertyDetailsComplete()
+            }
+        })
+        /****************************************************/
+
         binding.searchShowsRv.layoutManager = LinearLayoutManager(
             context,
             LinearLayoutManager.VERTICAL,

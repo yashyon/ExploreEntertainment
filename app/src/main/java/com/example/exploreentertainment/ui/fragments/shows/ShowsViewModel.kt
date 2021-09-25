@@ -1,5 +1,6 @@
 package com.example.exploreentertainment.ui.fragments.shows
 
+import android.graphics.Movie
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,7 @@ import com.example.exploreentertainment.network.apiservices.MoviesShowsApi
 import com.example.exploreentertainment.network.apiservices.MoviesShowsApiService
 import com.example.exploreentertainment.network.models.NowPlayingShow
 import com.example.exploreentertainment.network.models.movies.RecentMovie
+import com.example.exploreentertainment.network.models.shows.PopularShow
 import com.example.exploreentertainment.network.models.shows.SearchShow
 import com.example.exploreentertainment.network.repositories.SearchMoviesRepository
 import kotlinx.coroutines.launch
@@ -30,10 +32,23 @@ class ShowsViewModel : ViewModel() {
     fun displayNPShowPropertyDetailsComplete(){
         _navigateToSelectedNSProperty.value = null
     }
+    private val _popularShowsList = MutableLiveData<List<PopularShow>>()
+    val popularShowsList: LiveData<List<PopularShow>>
+        get() = _popularShowsList
+    private val _navigateToSelectedPSProperty = MutableLiveData<PopularShow?>()
+    val navigateToSelectedPSProperty: MutableLiveData<PopularShow?>
+        get() = _navigateToSelectedPSProperty
+
+    fun displayPopularShowsPropertyDetails(popularShow: PopularShow) {
+        _navigateToSelectedPSProperty.value = popularShow
+    }
+    fun displayPopularShowsPropertyDetailsComplete(){
+        _navigateToSelectedPSProperty.value = null
+    }
     init {
         viewModelScope.launch {
             _recentShowsList.value = MoviesShowsApi.retrofitService.getShows().npsResults
-
+            _popularShowsList.value = MoviesShowsApi.retrofitService.getPopularShows().results
         }
     }
     fun fetchSearch(search: String) {

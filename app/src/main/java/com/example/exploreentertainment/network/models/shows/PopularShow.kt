@@ -9,7 +9,7 @@ data class PopularShows(
 
 data class PopularShow(
     @Json(name = "poster_path")
-    val imgUrl2: String,
+    val imgUrl: String,
     @Json(name = "id")
     val id: Int
 )

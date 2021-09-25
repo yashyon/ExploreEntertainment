@@ -11,6 +11,7 @@ import com.example.exploreentertainment.adapters.moviesadapters.TopRatedMoviesAd
 import com.example.exploreentertainment.adapters.moviesadapters.UpComingMoviesAdapter
 import com.example.exploreentertainment.adapters.nowplayingAdapters.NowPlayingMoviesAdapter
 import com.example.exploreentertainment.adapters.nowplayingAdapters.NowPlayingShowsAdapter
+import com.example.exploreentertainment.adapters.showsadapters.PopularShowsAdapter
 import com.example.exploreentertainment.adapters.trendingadapters.TrendingMoviesAdapter
 import com.example.exploreentertainment.adapters.trendingadapters.TrendingShowsAdapter
 import com.example.exploreentertainment.network.models.NowPlayingShow
@@ -21,6 +22,7 @@ import com.example.exploreentertainment.network.models.movies.RecentMovie
 import com.example.exploreentertainment.network.models.movies.TopRatedMovie
 import com.example.exploreentertainment.network.models.movies.UpComingMovie
 import com.example.exploreentertainment.network.models.nowplaying.NowPlayingMovie
+import com.example.exploreentertainment.network.models.shows.PopularShow
 
 @BindingAdapter("rating")
 fun bindRating(textView: TextView, rating: Int) {
@@ -82,6 +84,10 @@ fun bindTrendingMoviesRecyclerView(recyclerView: RecyclerView, data: List<Trendi
     (recyclerView.adapter as? TrendingMoviesAdapter)?.submitList(data)
 }
 
+@BindingAdapter("listDataPopularShows")
+fun bindPopularShowsRecyclerView(recyclerView: RecyclerView, data: List<PopularShow>?) {
+    (recyclerView.adapter as? PopularShowsAdapter )?.submitList(data)
+}
 
 @BindingAdapter("imageUrl")
 fun bindImage(imageView: ImageView, imgUrl: String?) {
