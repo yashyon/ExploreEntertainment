@@ -19,6 +19,7 @@ import com.example.exploreentertainment.adapters.moviesadapters.SearchMoviesAdap
 import com.example.exploreentertainment.adapters.nowplayingAdapters.NowPlayingShowsAdapter
 import com.example.exploreentertainment.adapters.showsadapters.PopularShowsAdapter
 import com.example.exploreentertainment.adapters.showsadapters.SearchShowsAdapter
+import com.example.exploreentertainment.adapters.showsadapters.TopRatedShowsAdapter
 import com.example.exploreentertainment.databinding.MoviesFragmentBinding
 import com.example.exploreentertainment.databinding.ShowsFragmentBinding
 import com.example.exploreentertainment.ui.activities.showdetails.ShowDetail
@@ -65,7 +66,20 @@ class ShowsFragment : Fragment() {
             }
         })
         /****************************************************/
-
+        /*Top Rated Shows*/
+        binding.topRatedShowsRv.adapter = TopRatedShowsAdapter( TopRatedShowsAdapter.OnClickListener{
+            viewModel.displayTopRatedShowsPropertyDetails(it)
+        })
+        viewModel.navigateToSelectedTRSProperty.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                val showIntent = Intent(requireContext(), ShowDetail::class.java)
+                val showId = it.id
+                showIntent.putExtra(ShowDetail.show_id,showId);
+                startActivity(showIntent)
+                viewModel.displayTopRatedShowsPropertyDetailsComplete()
+            }
+        })
+        /****************************************************/
         binding.searchShowsRv.layoutManager = LinearLayoutManager(
             context,
             LinearLayoutManager.VERTICAL,

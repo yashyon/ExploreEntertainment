@@ -6,6 +6,7 @@ import com.example.exploreentertainment.network.models.trending.TrendingMovies
 import com.example.exploreentertainment.network.models.TrendingShows
 import com.example.exploreentertainment.network.models.movies.*
 import com.example.exploreentertainment.network.models.shows.PopularShows
+import com.example.exploreentertainment.network.models.shows.TopRatedShows
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import retrofit2.Retrofit
@@ -68,6 +69,12 @@ interface MoviesShowsApiService {
     suspend fun getPopularShows(
         @Query("api_key") apiKey: String = apikey
     ): PopularShows
+
+    @GET("tv/top_rated")
+    suspend fun getTopRatedShows(
+        @Query("api_key") apiKey: String = apikey
+    ): TopRatedShows
+
 }
 
 /**

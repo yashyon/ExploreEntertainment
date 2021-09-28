@@ -11,6 +11,7 @@ import com.example.exploreentertainment.network.models.NowPlayingShow
 import com.example.exploreentertainment.network.models.movies.RecentMovie
 import com.example.exploreentertainment.network.models.shows.PopularShow
 import com.example.exploreentertainment.network.models.shows.SearchShow
+import com.example.exploreentertainment.network.models.shows.TopRatedShow
 import com.example.exploreentertainment.network.repositories.SearchMoviesRepository
 import kotlinx.coroutines.launch
 
@@ -45,10 +46,24 @@ class ShowsViewModel : ViewModel() {
     fun displayPopularShowsPropertyDetailsComplete(){
         _navigateToSelectedPSProperty.value = null
     }
+    private val _topRatedShowsList = MutableLiveData<List<TopRatedShow>>()
+    val topRatedShowsList: LiveData<List<TopRatedShow>>
+        get() = _topRatedShowsList
+    private val _navigateToSelectedTRSProperty = MutableLiveData<TopRatedShow?>()
+    val navigateToSelectedTRSProperty: MutableLiveData<TopRatedShow?>
+        get() = _navigateToSelectedTRSProperty
+
+    fun displayTopRatedShowsPropertyDetails(topRatedShow: TopRatedShow) {
+        _navigateToSelectedTRSProperty.value = topRatedShow
+    }
+    fun displayTopRatedShowsPropertyDetailsComplete(){
+        _navigateToSelectedPSProperty.value = null
+    }
     init {
         viewModelScope.launch {
             _recentShowsList.value = MoviesShowsApi.retrofitService.getShows().npsResults
             _popularShowsList.value = MoviesShowsApi.retrofitService.getPopularShows().results
+            _topRatedShowsList.value = MoviesShowsApi.retrofitService.getTopRatedShows().results
         }
     }
     fun fetchSearch(search: String) {
